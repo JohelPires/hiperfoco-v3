@@ -28,7 +28,8 @@ Hiperfoco makes it easy to track your progress by showing you how many tasks you
 Customizing Categories
 
 You can customize the task categories and labels to fit your needs. For example, you might create categories for work, personal, or school-related tasks, and assign labels to specific tasks to help you keep track of them.
-Syncing Across Devices
+
+## Syncing Across Devices
 
 Hiperfoco syncs your tasks across all your devices, so you can access your to-do lists from anywhere. You can also share your tasks with others by inviting them to collaborate on a specific list.
 Support
@@ -37,6 +38,12 @@ If you have any questions or need assistance, please contact our support team at
 
 ## Database structure
 
-'''
-teste
-'''
+```
+{
+    _id: // auto generated id
+   task: "Name of the task",
+   desc: "A more detailed description of the task. this can be longer and more detailed and can contain some markdown notation.",
+   status: todo // todo | doing | done
+   timeSpent: 0 // time spent on task
+}
+```

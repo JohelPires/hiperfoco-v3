@@ -1,0 +1,25 @@
+{
+  "name": "hiperfoco-v3",
+  "version": "1.0.0",
+  "description": "Hiperfoco is a simple yet powerful application designed to help you manage your daily tasks and increase your productivity. With its easy-to-use interface and intuitive features, you can create to-do lists, set reminders, and track your progress. Features",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohelPires/hiperfoco-v3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JohelPires/hiperfoco-v3/issues"
+  },
+  "homepage": "https://github.com/JohelPires/hiperfoco-v3#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.9.1"
+  }
+}
