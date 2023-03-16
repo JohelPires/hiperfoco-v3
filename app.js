@@ -3,7 +3,7 @@ require('dotenv').config()
 const app = express()
 const routes = require('./routes/tasks')
 const connectDB = require('./db/connect')
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 5001
 
 app.use(express.json())
 
