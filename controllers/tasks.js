@@ -4,7 +4,10 @@ const Task = require('../models/task')
 
 const getAllTasks = async (req, res) => {
   try {
-    const tasks = await Task.find()
+    const tasks = await Task.find({ createdBy: req.user.userId }).sort(
+      'createdAt'
+    )
+    // const tasks = await Task.find()
     res.status(200).json(tasks)
   } catch (error) {
     res.status(500).json(error)
@@ -15,7 +18,8 @@ const getAllTasks = async (req, res) => {
 
 const getOneTask = async (req, res) => {
   try {
-    const task = await Task.findOne({ _id: req.params.id })
+    const user = req.user.userId
+    const task = await Task.findOne({ _id: req.params.id, createdBy: user })
     res.status(200).json(task)
   } catch (error) {
     res.status(500).json(error)
@@ -27,6 +31,7 @@ const getOneTask = async (req, res) => {
 
 const createTasks = async (req, res) => {
   try {
+    req.body.createdBy = req.user.userId
     const task = await Task.create(req.body)
     res.status(200).json(task)
   } catch (error) {
@@ -38,7 +43,8 @@ const createTasks = async (req, res) => {
 
 const deleteTask = async (req, res) => {
   try {
-    const task = await Task.deleteOne({ _id: req.params.id })
+    const user = req.user.userId
+    const task = await Task.deleteOne({ _id: req.params.id, createdBy: user })
     res.status(200).json(task)
   } catch (error) {
     res.status(500).json(error)
@@ -49,10 +55,15 @@ const deleteTask = async (req, res) => {
 
 const updateTasks = async (req, res) => {
   try {
-    const task = await Task.findOneAndUpdate({ _id: req.params.id }, req.body, {
-      new: true,
-      runValidators: true,
-    })
+    const user = req.user.userId
+    const task = await Task.findOneAndUpdate(
+      { _id: req.params.id, createdBy: user },
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      }
+    )
     res.status(200).json(task)
   } catch (error) {
     res.status(500).json(error)

@@ -13,7 +13,13 @@ const TaskSchema = mongoose.Schema(
     status: { type: Number, default: 0 }, // 0 - todo | 1 - doing | 2 - done
     estimate_hours: { type: Number }, // tempo estimado para conclusão da tarefa.
     timeSpent: { type: Number, default: 0 }, // time spent on task in minutes
+    createdBy: {
+      type: mongoose.Types.ObjectId,
+      ref: 'User',
+      required: [true, 'Please provide user'],
+    },
   },
+
   { timestamps: { createdAt: true } }
 )
 

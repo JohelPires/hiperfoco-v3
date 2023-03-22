@@ -1,5 +1,6 @@
 const express = require('express')
 require('dotenv').config()
+require('express-async-errors')
 const app = express()
 
 const connectDB = require('./db/connect')
@@ -9,7 +10,7 @@ app.use(cors())
 app.use(express.json())
 
 // authentication middleware
-// const authenticateUser = require('./middleware/authentication')
+const authenticateUser = require('./middleware/authentication')
 
 // error handler
 const notFoundMiddleware = require('./middleware/not-found')
@@ -20,7 +21,7 @@ const errorHandlerMiddleware = require('./middleware/error-handler')
 const routes = require('./routes/tasks')
 const authRouter = require('./routes/auth')
 app.use('/auth', authRouter)
-app.use('/api/v1/tasks', routes)
+app.use('/api/v1/tasks', authenticateUser, routes)
 
 // ====== start server ======
 app.use(notFoundMiddleware)
